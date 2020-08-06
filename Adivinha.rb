@@ -3,7 +3,7 @@ def bemVindo
     puts "Jogo de adivinhar!"
     puts "Qual seu nome"
     #gets é a forma de entrada, como voce vai interagir com o codigo
-    nome = gets
+    nome = gets.strip
     puts "\n\n" 
     #+ esta concatenando 
     puts "Vamos Jogar! " + nome
@@ -17,12 +17,13 @@ def sorteandoNumero
     numeroEscolhido
 end
 
-def pedeUmNumero(tentativas, limiteDeTentativa)
+def pedeUmNumero(chutes, tentativas, limiteDeTentativa)
     puts "\n\n" 
     puts "tentativa " + tentativas.to_s + " de " + limiteDeTentativa.to_s 
     puts "digite o seu chute ?"
+    puts "Chutes até agora!" + chutes.to_s
     #forma de pular linha sem adicionar diversos puts
-    chute = gets
+    chute = gets.strip
     puts "Sera que voce acertou ??"
     #forma de substituir o valor de texto string para int
     #forma de condicionar a mensagem!
@@ -47,9 +48,11 @@ end
 bemVindo
 numeroEscolhido = sorteandoNumero
 limiteDeTentativa = 5
+chutes =[]
 
 for tentativas in 1..limiteDeTentativa
-  chute = pedeUmNumero tentativas, limiteDeTentativa
+  chute = pedeUmNumero chutes, tentativas, limiteDeTentativa
+  chutes << chute
   if verificaSeAcertou numeroEscolhido, chute
     break
   end
